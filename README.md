@@ -17,6 +17,7 @@ Example use:
   running:   'renice -n 10 -p 32440'
 32440 (process ID) old priority 0, new priority 10
 
+
 # usage 
 
 ```
@@ -43,4 +44,5 @@ Options:
   -u USER, --user=USER  Restrict our selection to a specific specific user's
                         processes (exact username).
   -d, --dry-run         Just print what we would do, don't actually do it.
+  
 ```
