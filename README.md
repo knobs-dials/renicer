@@ -1,6 +1,8 @@
 # renicer
 
-Wrapper that eases renice+ionice.  Reads from /proc and /etc/passwd.
+Wrapper that eases renice+ionice on existing processes.
+
+Reads from /proc, and /etc/passwd when we filter for specific users.
 
 Example use:
 
