@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # 
 # renices and/or ionices processes by name. Optionally focuses on a single user
 # 
@@ -85,7 +85,7 @@ def procs_matching(substring, user=None, match_cmd=True, cmd_basename=True, matc
             
         except ValueError:
             pass
-            print "Skipping %r, am confused"%path
+            print( "Skipping %r, am confused"%path)
 
     return matches
 
@@ -118,14 +118,14 @@ if __name__ == '__main__':
 
 
     if len(args)!=1:
-        print 'Need one argument, a substring to match'
+        print( 'Need one argument, a substring to match')
         sys.exit()
 
     for pid,user,comm,cmdargs in procs_matching(substring=args[0], user=options.user):
         did_something = False
 
-        print
-        print '%r  (PID %d) matches'%(comm, pid)
+        print('')
+        print( '%r  (PID %d) matches'%(comm, pid))
 
         if options.lazy:
             options.ionice = '7'
@@ -147,10 +147,10 @@ if __name__ == '__main__':
 
             cmd = "ionice %s -p %s" % ( ' '.join(args), pid )
             if options.dryrun:
-                print "  would run:",
+                print( "  would run:", end='')
             else:
-                print "  running:",
-            print '  %r'%(cmd)
+                print( "  running:", end='')
+            print( '  %r'%(cmd))
             if not options.dryrun:
                 os.system( cmd )
             did_something = True
@@ -160,19 +160,19 @@ if __name__ == '__main__':
 
             cmd = "renice %s -p %s" % ( ' '.join(args), pid ) 
             if options.dryrun:
-                print "  would run:",
+                print( "  would run:", end='')
             else:
-                print "  running:",
-            print '  %r'%(cmd)
+                print( "  running:", end='')
+            print( '  %r'%(cmd))
             if not options.dryrun:
                 os.system( cmd )
             did_something = True
 
         if not did_something:
-            print "  no request for priority change"
-            print '    current niceness:'
+            print("  no request for priority change")
+            print('    current niceness:')
             os.system( 'echo -n "      ";ps -p %d -o ni | tail -n 1'%pid )
-            print '    current ioniceness:'
+            print('    current ioniceness:')
             os.system( 'echo -n "      ";ionice -p %d'%pid )
 
 
