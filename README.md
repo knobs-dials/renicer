@@ -1,6 +1,8 @@
 # renicer
 
-Wrapper that eases using renice and ionice on specific processes. 
+Wrapper that eases renice+ionice on existing processes.
+
+Reads from /proc, and /etc/passwd when we filter for specific users.
 
 Example use:
 
@@ -17,8 +19,6 @@ Example use:
   running:   'renice -n 10 -p 32440'
 32440 (process ID) old priority 0, new priority 10
 ```
-
-Reads from /proc, and /etc/passwd if you filter by user (to get the UID).
 
 # usage 
 
